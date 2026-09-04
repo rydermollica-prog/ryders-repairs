@@ -3,7 +3,37 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ryder's Repairs — v5</title>
+<title>Ryder's Denim Repairs · Denim Tailor &amp; Jeans Repair in Columbus, Ohio</title>
+<meta name="description" content="Ryder's Denim Repairs is a Clintonville denim shop in Columbus, Ohio for jeans hemming, tapering, blowout reweaves, patches, and custom denim work. Bring your jeans in or send a photo for a fast quote." />
+<meta name="keywords" content="denim repair Columbus, jeans repair Columbus, denim tailor Columbus, jeans tailoring Columbus Ohio, jeans hemming Columbus, jeans tapering, blowout repair, visible mending, sashiko, Clintonville tailor" />
+<meta name="author" content="Ryder's Denim Repairs" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://rydersrepairs.com/" />
+<meta name="theme-color" content="#0e1426" />
+
+<!-- Geo (Columbus, OH) -->
+<meta name="geo.region" content="US-OH" />
+<meta name="geo.placename" content="Columbus, Ohio" />
+<meta name="geo.position" content="40.0223;-83.0119" />
+<meta name="ICBM" content="40.0223, -83.0119" />
+
+<!-- Open Graph / social share -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Ryder's Denim Repairs" />
+<meta property="og:title" content="Ryder's Denim Repairs · Denim Tailor &amp; Jeans Repair in Columbus" />
+<meta property="og:description" content="Clintonville denim shop in Columbus, Ohio — hems, tapers, blowout reweaves, patches, and custom denim work. Send a photo for a quote." />
+<meta property="og:url" content="https://rydersrepairs.com/" />
+<meta property="og:image" content="https://rydersrepairs.com/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Ryder's Denim Repairs · Columbus, Ohio" />
+<meta name="twitter:description" content="Denim repair &amp; tailoring in Clintonville — hems, tapers, blowout reweaves, patches, custom work. Send a photo for a quote." />
+<meta name="twitter:image" content="https://rydersrepairs.com/og-image.jpg" />
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="64x64" href="favicon.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Spectral:ital,wght@0,300;0,400;1,400&display=swap" rel="stylesheet">
@@ -225,11 +255,14 @@
     header.top { margin: 0 -56px; padding: 10px 56px; }
   }
   .wordmark {
-    width: 120px;
-    height: auto;
+    height: 54px;
+    width: auto;
     display: block;
-    /* invert black ink to white; hue-rotate flips the inverted red back to red */
-    filter: invert(1) hue-rotate(180deg) saturate(1.1);
+    /* logo is dark ink meant for a light ground — set it on a bone "label" so it reads on the dark bar */
+    background: var(--bone);
+    padding: 5px 9px;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.35);
   }
   nav.top-nav {
     display: flex;
@@ -253,8 +286,8 @@
   .meta {
     margin-top: 14px;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.32em;
+    font-size: 11px;
+    letter-spacing: 0.26em;
     text-transform: uppercase;
     color: var(--ecru-soft);
   }
@@ -341,21 +374,22 @@
   }
   .section-num {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.32em;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.28em;
     text-transform: uppercase;
-    color: var(--ecru-soft);
-    padding-top: 18px;
+    color: var(--ecru);
+    padding-top: 16px;
   }
   .section-aside {
     font-family: 'Spectral', serif;
     font-style: italic;
-    font-weight: 300;
+    font-weight: 400;
     color: var(--ecru);
-    font-size: 15px;
+    font-size: 16px;
     text-align: right;
-    padding-top: 18px;
-    line-height: 1.5;
+    padding-top: 16px;
+    line-height: 1.55;
   }
   h2 {
     font-family: 'Inter', sans-serif;
@@ -370,39 +404,42 @@
   /* ---------- Recent work ---------- */
   .work-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 24px;
-  }
-  .work-grid .right {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
     gap: 24px;
   }
   .ba {
-    aspect-ratio: 4 / 5;
-    background-image: url("denim-texture.jpg");
-    background-size: cover;
-    background-position: center;
+    margin: 0;
+    aspect-ratio: 3 / 4;
     border: 1px solid var(--rule);
     position: relative;
     overflow: hidden;
-    filter: brightness(0.85) contrast(1.05);
+    background: var(--indigo-1);
   }
-  .ba.wide { aspect-ratio: 5 / 3; }
+  .ba img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    z-index: 0;
+    transition: transform .5s ease;
+  }
+  .ba:hover img { transform: scale(1.045); }
   .ba::before {
     content: "";
     position: absolute; inset: 0;
-    background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.5));
+    z-index: 1;
+    background: linear-gradient(180deg, transparent 52%, rgba(0,0,0,0.6));
   }
   .ba .tag {
     position: absolute;
-    bottom: 18px; left: 18px;
+    bottom: 16px; left: 16px;
+    z-index: 2;
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.28em;
+    font-size: 11px;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
     color: var(--bone);
-    z-index: 1;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.6);
   }
 
   /* ---------- Logbook ---------- */
@@ -612,8 +649,8 @@
   }
   footer h4 {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.28em;
+    font-size: 11px;
+    letter-spacing: 0.24em;
     text-transform: uppercase;
     color: var(--ecru-soft);
     margin: 0 0 14px;
@@ -630,9 +667,12 @@
   }
   footer a:hover { color: var(--bone); }
   footer .wordmark-sm {
-    width: 140px;
-    margin-bottom: 18px;
-    filter: invert(1) hue-rotate(180deg) saturate(1.1);
+    width: 190px;
+    margin-bottom: 20px;
+    background: var(--bone);
+    padding: 10px 14px;
+    border-radius: 3px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4);
   }
   .colophon {
     margin-top: 40px;
@@ -647,19 +687,6 @@
     justify-content: space-between;
   }
 
-  .mockup-note {
-    background: rgba(0,0,0,0.5);
-    color: var(--ecru-soft);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    padding: 10px 14px 10px 56px;
-    border-bottom: 1px solid var(--rule);
-    position: relative;
-    z-index: 2;
-  }
-
   @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; padding: 120px 0; }
     .work-grid { grid-template-columns: 1fr; }
@@ -671,10 +698,96 @@
     .page { padding: 0 56px; }
     form.quote-form .row-2 { grid-template-columns: 1fr; }
   }
+
+  /* ---------- Instagram card (feed preview) ---------- */
+  .ig-card {
+    border: 1px solid var(--rule-strong);
+    background: rgba(0,0,0,0.28);
+    padding: 14px;
+  }
+  .ig-card-top {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 4px 14px;
+  }
+  .ig-card-top .ig-glyph { width: 26px; height: 26px; flex: none; color: var(--bone); }
+  .ig-card-top .ig-user {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    color: var(--bone);
+  }
+  .ig-card-top .ig-follow { margin-left: auto; padding: 9px 16px; }
+  .ig-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .ig-grid a {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    display: block;
+    background: var(--indigo-1);
+  }
+  .ig-grid img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+  .ig-grid a:hover img { transform: scale(1.06); }
+  .ig-grid .ig-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 12px;
+    background:
+      linear-gradient(rgba(6,9,18,0.55), rgba(6,9,18,0.55)),
+      url("denim-texture.jpg");
+    background-size: cover;
+    background-position: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--bone);
+    text-decoration: none;
+    line-height: 1.7;
+  }
+  .ig-grid .ig-more:hover { color: var(--selvedge-red); }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": ["TailorShop", "ClothingStore"],
+  "name": "Ryder's Denim Repairs",
+  "description": "Denim repair and tailoring in Columbus, Ohio — jeans hemming, tapering, blowout reweaves, patches, and custom denim work.",
+  "image": "https://rydersrepairs.com/og-image.jpg",
+  "logo": "https://rydersrepairs.com/ryders-logo.png",
+  "url": "https://rydersrepairs.com/",
+  "email": "hello@rydersrepairs.com",
+  "foundingDate": "2023",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "2930 N High St",
+    "addressLocality": "Columbus",
+    "addressRegion": "OH",
+    "postalCode": "43202",
+    "addressCountry": "US"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 40.0223, "longitude": -83.0119 },
+  "areaServed": { "@type": "City", "name": "Columbus" },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "13:00",
+    "closes": "19:00"
+  }],
+  "sameAs": ["https://instagram.com/rydersrepairs"],
+  "knowsAbout": ["denim repair", "jeans tailoring", "hemming", "tapering", "blowout reweave", "visible mending", "sashiko"]
+}
+</script>
 </head>
 <body>
-  <div class="mockup-note">Mockup v5 · real denim photo · fade on scroll · functional buttons</div>
 
   <div class="selvedge" aria-hidden="false" role="scrollbar" aria-orientation="vertical" aria-controls="top">
     <div class="denim-back"></div>
@@ -700,10 +813,10 @@
     <section class="hero" id="top">
       <h1>Denim,<br/>repaired.</h1>
       <div class="right">
-        <p class="lede">A small shop in Clintonville for hems, tapers, blowouts, and custom work. Bring your jeans in or send a photo for a quote.</p>
+        <p class="lede">A denim repair &amp; tailoring shop in Clintonville, Columbus — hems, tapers, blowout reweaves, patches, and custom work. Bring your jeans in or send a photo for a quote.</p>
         <div class="ctas">
           <a class="btn solid" href="#contact">Request a Quote</a>
-          <a class="phone-link" href="tel:+16140000000">Call the shop</a>
+          <a class="phone-link" href="https://instagram.com/rydersrepairs" target="_blank" rel="noopener">See work on Instagram</a>
         </div>
       </div>
     </section>
@@ -715,11 +828,18 @@
         <div class="section-aside">More on Instagram. Curated highlights below.</div>
       </div>
       <div class="work-grid">
-        <div class="ba"><span class="tag">001 · Knee blowout</span></div>
-        <div class="right">
-          <div class="ba wide"><span class="tag">002 · Taper</span></div>
-          <div class="ba wide"><span class="tag">003 · Hem</span></div>
-        </div>
+        <figure class="ba">
+          <img src="work-blowout-reweave.jpg" alt="Machine reweave repairing a blown-out worn spot on indigo denim jeans" loading="lazy" width="1200" height="1600" />
+          <figcaption class="tag">001 · Blowout reweave</figcaption>
+        </figure>
+        <figure class="ba">
+          <img src="work-pocket-reinforcement.jpg" alt="Darned and reinforced back pocket on faded grey jeans" loading="lazy" width="1200" height="1600" />
+          <figcaption class="tag">002 · Pocket reinforcement</figcaption>
+        </figure>
+        <figure class="ba">
+          <img src="work-visible-mending.jpg" alt="Colorful visible mending and sashiko-style darning on light-wash denim" loading="lazy" width="1200" height="1600" />
+          <figcaption class="tag">003 · Visible mending</figcaption>
+        </figure>
       </div>
     </section>
 
@@ -774,15 +894,18 @@
           <p>Day-to-day work goes up here first — repairs in progress, finished jobs, the occasional sewing-machine close-up. Follow along, or come by the shop.</p>
           <div style="margin-top:32px"><a class="btn" href="https://instagram.com/rydersrepairs" target="_blank" rel="noopener">Open on Instagram</a></div>
         </div>
-        <div class="ig-embed">
-          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/rydersrepairs/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:0; max-width:540px; min-width:280px; padding:0; width:100%;">
-            <div style="padding:16px;">
-              <a href="https://www.instagram.com/rydersrepairs/" target="_blank" style="background:#FFFFFF; line-height:0; padding:0; text-align:center; text-decoration:none; width:100%;">
-                <div style="padding-top:8px;"><div style="color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-weight:550; line-height:18px;">View this profile on Instagram</div></div>
-              </a>
-            </div>
-          </blockquote>
-          <script async src="//www.instagram.com/embed.js"></script>
+        <div class="ig-card">
+          <div class="ig-card-top">
+            <svg class="ig-glyph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor" stroke="none"/></svg>
+            <span class="ig-user">@rydersrepairs</span>
+            <a class="btn ig-follow" href="https://instagram.com/rydersrepairs" target="_blank" rel="noopener">Follow</a>
+          </div>
+          <div class="ig-grid">
+            <a href="https://instagram.com/rydersrepairs" target="_blank" rel="noopener"><img src="work-visible-mending.jpg" alt="Visible mending on light-wash denim" loading="lazy" /></a>
+            <a href="https://instagram.com/rydersrepairs" target="_blank" rel="noopener"><img src="work-blowout-reweave.jpg" alt="Blowout reweave on indigo denim" loading="lazy" /></a>
+            <a href="https://instagram.com/rydersrepairs" target="_blank" rel="noopener"><img src="work-pocket-reinforcement.jpg" alt="Back-pocket reinforcement on grey jeans" loading="lazy" /></a>
+            <a class="ig-more" href="https://instagram.com/rydersrepairs" target="_blank" rel="noopener">More<br/>on Instagram →</a>
+          </div>
         </div>
       </div>
     </section>
@@ -795,7 +918,7 @@
       </div>
       <div style="max-width: 70ch;">
         <p style="font-family:'Spectral',serif; font-size:18px; line-height:1.7; color:var(--ecru); font-weight:300;">
-          Ryder works out of a small shop on N. High Street, repairing jeans for people who'd rather fix what they already love than buy something new. Stop in during shop hours or send a photo for a quote.
+          Ryder works out of a small denim shop on N. High Street in Clintonville, Columbus — repairing and tailoring jeans for people who'd rather fix what they already love than buy something new. Stop in during shop hours or send a photo for a quote.
         </p>
       </div>
     </section>
@@ -804,7 +927,7 @@
       <div class="section-head">
         <div class="section-num">05 · Contact</div>
         <h2>Request a quote.</h2>
-        <div class="section-aside">Or call (614) 000-0000<br/>during shop hours.</div>
+        <div class="section-aside">Send a few photos and<br/>I'll reply by email.</div>
       </div>
 
       <div class="form-wrap">
@@ -815,7 +938,6 @@
             2930 N. High St<br/>
             Columbus, Ohio 43202<br/><br/>
             Tue–Fri · 1–7pm<br/>
-            (614) 000-0000<br/>
             hello@rydersrepairs.com
           </div>
         </div>
@@ -834,7 +956,7 @@
           <div class="row-2">
             <div>
               <label for="qf-phone">Phone (optional)</label>
-              <input id="qf-phone" name="phone" type="tel" placeholder="(614) 000-0000" />
+              <input id="qf-phone" name="phone" type="tel" placeholder="Best number to reach you" />
             </div>
             <div>
               <label for="qf-garment">Garment</label>
@@ -877,7 +999,6 @@
       <div>
         <h4>Contact</h4>
         <p>
-          <a href="tel:+16140000000">(614) 000-0000</a><br/>
           <a href="mailto:hello@rydersrepairs.com">hello@rydersrepairs.com</a>
         </p>
       </div>
@@ -889,7 +1010,7 @@
 
     <div class="colophon">
       <span>© Ryder's Repairs — Made in Columbus</span>
-      <span>Est. 20XX</span>
+      <span>Est. 2023</span>
     </div>
 
   </div>
