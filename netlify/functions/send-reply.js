@@ -33,14 +33,9 @@ export async function handler(event) {
 
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
-    const { subject, text } = buildReplyEmail({ quote, replyBody: body.replyBody });
-    const { error: sendErr } = await resend.emails.send({
-      from: process.env.FROM_EMAIL,
-      to: quote.email,
-      reply_to: process.env.FROM_EMAIL,
-      subject,
-      text,
-    });
+    const { error: sendErr } = await resend.emails.send(
+      buildReplyEmail({ quote, replyBody: body.replyBody, from: process.env.FROM_EMAIL })
+    );
     if (sendErr) throw sendErr;
   } catch (e) {
     console.error('reply send failed', e);

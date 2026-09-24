@@ -52,14 +52,12 @@ export async function handler(event) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
     const inboxUrl = `${process.env.SITE_URL || 'https://rydersrepairs.com'}/inbox`;
-    const { subject, text } = buildNotificationEmail({ quote: body, inboxUrl });
-    await resend.emails.send({
+    await resend.emails.send(buildNotificationEmail({
+      quote: body,
+      inboxUrl,
       from: process.env.FROM_EMAIL,
       to: process.env.ALLOWED_ADMIN_EMAIL,
-      reply_to: body.email,
-      subject,
-      text,
-    });
+    }));
   } catch (e) {
     console.error('notification email failed', e);
   }
