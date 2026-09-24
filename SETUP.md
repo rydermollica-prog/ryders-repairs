@@ -6,12 +6,11 @@ Do these once. ~20 minutes.
 1. Create a free project at supabase.com.
 2. SQL Editor → paste all of `supabase-schema.sql` → Run.
 3. If the admin email is ever not `rydermollica@gmail.com`, edit the three policies in that SQL to match.
-4. Authentication → Providers → Google → enable. You'll need a Google Cloud OAuth client:
-   - Google Cloud Console → APIs & Services → Credentials → Create OAuth client ID (Web).
-   - Authorized redirect URI: the value Supabase shows on the Google provider screen (looks like `https://<project>.supabase.co/auth/v1/callback`).
-   - Paste the Client ID + Secret back into Supabase, save.
-   - (If Google setup is a pain, use "Email" provider magic links instead and tell Claude to switch login to magic-link.)
-5. Project Settings → API: copy Project URL, anon key, and service_role key.
+4. Authentication → Providers → make sure **Email** is enabled (it is by default). No Google or OAuth setup needed — login uses a magic link.
+5. Authentication → URL Configuration → **Redirect URLs**: add `https://rydersrepairs.com/inbox` and `https://rydersrepairs.com`. (This lets the emailed sign-in link land back on the site.)
+   - Note: Supabase's built-in auth email is fine for one admin logging in occasionally. If sign-in emails ever get rate-limited, point Supabase's SMTP at Resend later.
+6. Project Settings → API: copy **Project URL**, **anon key**, and **service_role key**.
+   - Project URL and anon key are safe to share. The **service_role key is secret** — it only ever goes into Netlify, never anywhere public.
 
 ## 2. Resend (sending email)
 1. Create a free account at resend.com.
@@ -37,6 +36,6 @@ Then trigger a deploy.
 ## 5. Verify
 - Submit a test quote on the live site with a photo.
 - Check `rydermollica@gmail.com` for the "New quote" email.
-- Click the right star in the logo → sign in with Google → see the quote + photo in the inbox.
+- Click the right star in the logo → enter Ryder's email → click the sign-in link that arrives → see the quote + photo in the inbox.
 - Send a reply → confirm it arrives at the test customer address.
 - Email `hello@rydersrepairs.com` from anywhere → confirm it lands in Ryder's Gmail.

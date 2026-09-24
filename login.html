@@ -12,17 +12,24 @@
   .card{border:1px solid var(--rule);padding:40px;max-width:360px;width:100%;text-align:center;background:rgba(0,0,0,0.3);}
   h1{font-family:'Inter',system-ui,sans-serif;color:var(--bone);font-size:22px;margin:0 0 8px;}
   p{font-size:14px;line-height:1.6;margin:0 0 24px;}
+  input{width:100%;background:rgba(0,0,0,0.35);border:1px solid var(--rule);color:var(--bone);
+    font-family:'Spectral',serif;font-size:16px;padding:13px 14px;margin-bottom:14px;outline:none;}
+  input:focus{border-color:var(--bone);}
   button{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;
     padding:14px 20px;border:1px solid var(--bone);background:var(--bone);color:var(--indigo-1);cursor:pointer;width:100%;}
   button:hover{background:transparent;color:var(--bone);}
-  .msg{margin-top:16px;font-size:13px;color:#e08a8a;min-height:18px;}
+  button:disabled{opacity:.5;cursor:default;}
+  .msg{margin-top:16px;font-size:13px;min-height:18px;}
 </style>
 </head>
 <body>
   <div class="wrap"><div class="card">
     <h1>Ryder's Repairs</h1>
-    <p>Staff sign in to view quote requests.</p>
-    <button id="signin">Sign in with Google</button>
+    <p>Enter your email and we'll send you a sign-in link.</p>
+    <form id="magic">
+      <input id="email" type="email" placeholder="you@email.com" autocomplete="email" required />
+      <button type="submit">Send me a sign-in link</button>
+    </form>
     <div class="msg" id="msg"></div>
   </div></div>
   <script type="module">
@@ -31,16 +38,27 @@
     const supabase = createClient(cfg.url, cfg.anonKey);
     const msg = document.getElementById('msg');
 
-    // If already signed in, go to the inbox.
+    // Already signed in? Go straight to the inbox.
     const { data: { session } } = await supabase.auth.getSession();
     if (session) location.replace('/inbox');
 
-    document.getElementById('signin').addEventListener('click', async () => {
-      const { error } = await supabase.auth.signInWithOAuth({
-        provider: 'google',
-        options: { redirectTo: location.origin + '/inbox' },
+    const form = document.getElementById('magic');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      if (!email) return;
+      const btn = form.querySelector('button');
+      btn.disabled = true;
+      msg.style.color = ''; msg.textContent = 'Sending link...';
+      const { error } = await supabase.auth.signInWithOtp({
+        email,
+        options: { emailRedirectTo: location.origin + '/inbox' },
       });
-      if (error) msg.textContent = error.message;
+      if (error) {
+        msg.style.color = '#e08a8a'; msg.textContent = error.message; btn.disabled = false;
+      } else {
+        msg.style.color = ''; msg.textContent = 'Check your email for a sign-in link.';
+      }
     });
   </script>
 </body>
