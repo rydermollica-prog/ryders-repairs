@@ -1,0 +1,12 @@
+{
+  "name": "ryders-repairs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test 'netlify/functions/lib/*.test.js'"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0",
+    "resend": "^4.0.0"
+  }
+}
