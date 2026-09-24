@@ -808,7 +808,10 @@
   <div class="page">
 
     <header class="top">
-      <a href="#top" aria-label="Home"><img class="wordmark" src="ryders-logo.png" alt="Ryder's Denim Repairs" /></a>
+      <span class="logo-wrap" style="position:relative; display:inline-block;">
+        <a href="#top" aria-label="Home"><img class="wordmark" src="ryders-logo.png" alt="Ryder's Denim Repairs" /></a>
+        <a href="/login" aria-label="Staff login" style="position:absolute; top:34%; right:6%; width:16%; height:42%; z-index:2;"></a>
+      </span>
       <nav class="top-nav">
         <a href="#work">Work</a>
         <a href="#services">Services</a>
@@ -951,6 +954,9 @@
         </div>
 
         <form class="quote-form" id="quote-form" novalidate>
+          <div style="position:absolute;left:-9999px;" aria-hidden="true">
+            <label>Company<input type="text" id="qf-company" name="company" tabindex="-1" autocomplete="off" /></label>
+          </div>
           <div class="row-2">
             <div>
               <label for="qf-name">Your name</label>
@@ -1114,20 +1120,51 @@
       }
     });
 
-    // Mock form submit
+    // Real quote submission
     const form = document.getElementById('quote-form');
     const status = document.getElementById('form-status');
+    const val = (id) => document.getElementById(id).value;
+    function setStatus(msg, ok) {
+      status.textContent = msg;
+      status.style.color = ok ? '' : '#e08a8a';
+      status.classList.add('show');
+    }
     if (form) {
-      form.addEventListener('submit', e => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if (!form.checkValidity()) {
-          form.reportValidity();
-          return;
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+        const btn = form.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        setStatus('Sending...', true);
+        try {
+          const files = Array.from(fileInput?.files || []);
+          const meta = files.map((f) => ({ name: f.name, size: f.size, type: f.type }));
+          const payload = {
+            name: val('qf-name'), email: val('qf-email'), phone: val('qf-phone'),
+            garment: val('qf-garment'), issue: val('qf-issue'),
+            company: val('qf-company'), photos: meta,
+          };
+          const res = await fetch('/.netlify/functions/submit-quote', {
+            method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload),
+          });
+          const data = await res.json();
+          if (!res.ok || !data.ok) throw new Error(data.error || 'Something went wrong.');
+          if (Array.isArray(data.uploads)) {
+            for (let i = 0; i < data.uploads.length; i++) {
+              await fetch(data.uploads[i].signedUrl, {
+                method: 'PUT', headers: { 'content-type': files[i].type }, body: files[i],
+              });
+            }
+          }
+          form.reset();
+          if (fileLabel) fileLabel.textContent = 'Click to attach photos · jpg, png, heic';
+          setStatus("Thanks, I'll be in touch.", true);
+        } catch (err) {
+          setStatus((err.message || 'Could not send.') + ' Or email hello@rydersrepairs.com', false);
+        } finally {
+          btn.disabled = false;
+          setTimeout(() => status.classList.remove('show'), 6000);
         }
-        status.classList.add('show');
-        form.reset();
-        if (fileLabel) fileLabel.textContent = 'Click to attach photos · jpg, png, heic';
-        setTimeout(() => status.classList.remove('show'), 4000);
       });
     }
   </script>
