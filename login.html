@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Staff Login · Ryder's Repairs</title>
+<style>
+  :root { --indigo-0:#060912; --indigo-1:#0e1426; --bone:#ece6d6; --ecru:#d3c8aa; --rule:rgba(236,230,214,0.12); }
+  html,body{margin:0;height:100%;background:var(--indigo-0);color:var(--ecru);font-family:'Spectral',Georgia,serif;}
+  .wrap{min-height:100%;display:flex;align-items:center;justify-content:center;}
+  .card{border:1px solid var(--rule);padding:40px;max-width:360px;width:100%;text-align:center;background:rgba(0,0,0,0.3);}
+  h1{font-family:'Inter',system-ui,sans-serif;color:var(--bone);font-size:22px;margin:0 0 8px;}
+  p{font-size:14px;line-height:1.6;margin:0 0 24px;}
+  button{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;
+    padding:14px 20px;border:1px solid var(--bone);background:var(--bone);color:var(--indigo-1);cursor:pointer;width:100%;}
+  button:hover{background:transparent;color:var(--bone);}
+  .msg{margin-top:16px;font-size:13px;color:#e08a8a;min-height:18px;}
+</style>
+</head>
+<body>
+  <div class="wrap"><div class="card">
+    <h1>Ryder's Repairs</h1>
+    <p>Staff sign in to view quote requests.</p>
+    <button id="signin">Sign in with Google</button>
+    <div class="msg" id="msg"></div>
+  </div></div>
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+    const cfg = await (await fetch('/.netlify/functions/config')).json();
+    const supabase = createClient(cfg.url, cfg.anonKey);
+    const msg = document.getElementById('msg');
+
+    // If already signed in, go to the inbox.
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) location.replace('/inbox');
+
+    document.getElementById('signin').addEventListener('click', async () => {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: { redirectTo: location.origin + '/inbox' },
+      });
+      if (error) msg.textContent = error.message;
+    });
+  </script>
+</body>
+</html>
