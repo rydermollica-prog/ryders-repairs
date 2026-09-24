@@ -21,14 +21,14 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Ryder's Denim Repairs" />
 <meta property="og:title" content="Ryder's Denim Repairs · Denim Tailor &amp; Jeans Repair in Columbus" />
-<meta property="og:description" content="Clintonville denim shop in Columbus, Ohio — hems, tapers, blowout reweaves, patches, and custom denim work. Send a photo for a quote." />
+<meta property="og:description" content="Clintonville denim shop in Columbus, Ohio. Hems, tapers, blowout reweaves, patches, and custom denim work. Send a photo for a quote." />
 <meta property="og:url" content="https://rydersrepairs.com/" />
 <meta property="og:image" content="https://rydersrepairs.com/og-image.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Ryder's Denim Repairs · Columbus, Ohio" />
-<meta name="twitter:description" content="Denim repair &amp; tailoring in Clintonville — hems, tapers, blowout reweaves, patches, custom work. Send a photo for a quote." />
+<meta name="twitter:description" content="Denim repair &amp; tailoring in Clintonville. Hems, tapers, blowout reweaves, patches, custom work. Send a photo for a quote." />
 <meta name="twitter:image" content="https://rydersrepairs.com/og-image.jpg" />
 
 <!-- Favicon -->
@@ -45,7 +45,7 @@
     --indigo-faded:  #2a385a;
     --indigo-bone:   #3d4e72;
     --ecru:          #d3c8aa;
-    --ecru-soft:     #9c9075;
+    --ecru-soft:     #cdc2a2;
     --bone:          #ece6d6;
     --selvedge-red:  #b3242c;
     --rule:          rgba(236,230,214,0.10);
@@ -242,11 +242,19 @@
     justify-content: space-between;
     padding: 10px 96px;
     margin: 0 -96px;
-    background: rgba(8, 12, 26, 0.72);
-    backdrop-filter: blur(10px) saturate(1.1);
-    -webkit-backdrop-filter: blur(10px) saturate(1.1);
-    border-bottom: 1px solid var(--rule);
-    transition: background .2s ease;
+    /* Soft top-down scrim (darkest at the very top, fading to nothing) so the
+       fixed denim reads THROUGH the bar instead of a hard dark rectangle. */
+    background: linear-gradient(180deg,
+      rgba(6,9,18,0.82) 0%,
+      rgba(6,9,18,0.55) 55%,
+      rgba(6,9,18,0.0) 100%);
+    backdrop-filter: blur(9px) saturate(1.05);
+    -webkit-backdrop-filter: blur(9px) saturate(1.05);
+    /* Fade the frosted panel out at its lower edge — kills the visible box seam
+       so the header blends with the page at every scroll position. */
+    -webkit-mask-image: linear-gradient(180deg, #000 58%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 58%, transparent 100%);
+    border-bottom: none;
   }
   @media (min-width: 1500px) {
     header.top { margin: 0 -120px; padding: 10px 120px; }
@@ -759,7 +767,7 @@
   "@context": "https://schema.org",
   "@type": ["TailorShop", "ClothingStore"],
   "name": "Ryder's Denim Repairs",
-  "description": "Denim repair and tailoring in Columbus, Ohio — jeans hemming, tapering, blowout reweaves, patches, and custom denim work.",
+  "description": "Denim repair and tailoring in Columbus, Ohio. Jeans hemming, tapering, blowout reweaves, patches, and custom denim work.",
   "image": "https://rydersrepairs.com/og-image.jpg",
   "logo": "https://rydersrepairs.com/ryders-logo.png",
   "url": "https://rydersrepairs.com/",
@@ -813,7 +821,7 @@
     <section class="hero" id="top">
       <h1>Denim,<br/>repaired.</h1>
       <div class="right">
-        <p class="lede">A denim repair &amp; tailoring shop in Clintonville, Columbus — hems, tapers, blowout reweaves, patches, and custom work. Bring your jeans in or send a photo for a quote.</p>
+        <p class="lede">A denim repair &amp; tailoring shop in Clintonville, Columbus. Hems, tapers, blowout reweaves, patches, and custom work. Bring your jeans in or send a photo for a quote.</p>
         <div class="ctas">
           <a class="btn solid" href="#contact">Request a Quote</a>
           <a class="phone-link" href="https://instagram.com/rydersrepairs" target="_blank" rel="noopener">See work on Instagram</a>
@@ -847,7 +855,7 @@
       <div class="section-head">
         <div class="section-num">02 · Services</div>
         <h2>What I do.</h2>
-        <div class="section-aside">Pricing is by quote. Send photos in the form.</div>
+        <div class="section-aside">Every job is quoted individually.</div>
       </div>
 
       <div class="logbook">
@@ -878,7 +886,7 @@
       </div>
 
       <div class="quote-row">
-        <p>Every job's different — pricing is by quote, not by the hour.</p>
+        <p>Every job's different. Priced by the piece, never by the hour.</p>
         <a class="btn" href="#contact">Start a Quote</a>
       </div>
     </section>
@@ -887,11 +895,11 @@
       <div class="section-head">
         <div class="section-num">03 · Instagram</div>
         <h2>@rydersrepairs</h2>
-        <div class="section-aside">Live feed — fresh work as it happens.</div>
+        <div class="section-aside">What's on the bench lately.</div>
       </div>
       <div class="ig-block">
         <div class="copy">
-          <p>Day-to-day work goes up here first — repairs in progress, finished jobs, the occasional sewing-machine close-up. Follow along, or come by the shop.</p>
+          <p>Day-to-day work goes up here first. Repairs in progress, finished jobs, the occasional sewing-machine close-up. Follow along, or come by the shop.</p>
           <div style="margin-top:32px"><a class="btn" href="https://instagram.com/rydersrepairs" target="_blank" rel="noopener">Open on Instagram</a></div>
         </div>
         <div class="ig-card">
@@ -918,7 +926,7 @@
       </div>
       <div style="max-width: 70ch;">
         <p style="font-family:'Spectral',serif; font-size:18px; line-height:1.7; color:var(--ecru); font-weight:300;">
-          Ryder works out of a small denim shop on N. High Street in Clintonville, Columbus — repairing and tailoring jeans for people who'd rather fix what they already love than buy something new. Stop in during shop hours or send a photo for a quote.
+          Ryder works out of a small denim shop on N. High Street in Clintonville, Columbus, repairing and tailoring jeans for people who'd rather fix what they already love than buy something new. Stop in during shop hours or send a photo for a quote.
         </p>
       </div>
     </section>
@@ -932,7 +940,7 @@
 
       <div class="form-wrap">
         <div class="copy">
-          <p>Tell me what you've got. A few photos help — close-ups of the issue, plus a wider shot of the whole garment.</p>
+          <p>Tell me what you've got. A few photos help. Close-ups of the issue, plus a wider shot of the whole garment.</p>
           <p>I'll reply by email, usually within a couple of days.</p>
           <div class="detail">
             2930 N. High St<br/>
@@ -972,7 +980,7 @@
           </div>
           <div>
             <label for="qf-issue">What needs fixing?</label>
-            <textarea id="qf-issue" name="issue" placeholder="Describe the issue — knee blowout, hem, taper, custom request, etc." required></textarea>
+            <textarea id="qf-issue" name="issue" placeholder="Describe the issue. Knee blowout, hem, taper, custom request, etc." required></textarea>
           </div>
           <div>
             <label for="qf-photos">Photos (close-up + full garment)</label>
@@ -981,7 +989,7 @@
           </div>
           <div class="submit-row">
             <button type="submit" class="btn solid">Send Quote Request</button>
-            <span class="form-status" id="form-status">Thanks — I'll be in touch.</span>
+            <span class="form-status" id="form-status">Thanks, I'll be in touch.</span>
           </div>
         </form>
       </div>
@@ -1009,7 +1017,7 @@
     </footer>
 
     <div class="colophon">
-      <span>© Ryder's Repairs — Made in Columbus</span>
+      <span>© Ryder's Repairs · Made in Columbus</span>
       <span>Est. 2023</span>
     </div>
 
