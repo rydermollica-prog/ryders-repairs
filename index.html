@@ -242,25 +242,27 @@
     justify-content: space-between;
     padding: 10px 96px;
     margin: 0 -96px;
-    /* Soft top-down scrim (darkest at the very top, fading to nothing) so the
-       fixed denim reads THROUGH the bar instead of a hard dark rectangle. */
-    background: linear-gradient(180deg,
-      rgba(6,9,18,0.82) 0%,
-      rgba(6,9,18,0.55) 55%,
-      rgba(6,9,18,0.0) 100%);
-    backdrop-filter: blur(9px) saturate(1.05);
-    -webkit-backdrop-filter: blur(9px) saturate(1.05);
-    /* Fade the frosted panel out at its lower edge — kills the visible box seam
-       so the header blends with the page at every scroll position. */
-    -webkit-mask-image: linear-gradient(180deg, #000 58%, transparent 100%);
-    mask-image: linear-gradient(180deg, #000 58%, transparent 100%);
-    border-bottom: none;
+    /* Solid bar: content scrolls under it and never shows through. Same denim
+       texture as the page (fixed + multiplied) so it still reads as denim. */
+    background-color: var(--indigo-0);
+    background-image: url("denim-texture.jpg");
+    background-size: 480px auto;
+    background-position: center top;
+    background-attachment: fixed;
+    background-blend-mode: multiply;
+    border-bottom: 1px solid var(--rule);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
   }
   @media (min-width: 1500px) {
     header.top { margin: 0 -120px; padding: 10px 120px; }
   }
   @media (max-width: 900px) {
     header.top { margin: 0 -56px; padding: 10px 56px; }
+  }
+  /* Phones: four links don't fit beside the logo. Keep the two that matter. */
+  @media (max-width: 640px) {
+    nav.top-nav { gap: 24px; }
+    nav.top-nav a[href="#services"], nav.top-nav a[href="#about"] { display: none; }
   }
   .wordmark {
     height: 54px;
@@ -632,6 +634,21 @@
     text-transform: uppercase;
   }
   form.quote-form .file:hover { border-color: var(--bone); color: var(--bone); }
+  form.quote-form .photo-note-label {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ecru-soft);
+    margin-bottom: 8px;
+  }
+  form.quote-form .photo-note p {
+    margin: 0;
+    font-family: 'Spectral', serif;
+    font-style: italic;
+    color: var(--ecru-soft);
+  }
   form.quote-form .submit-row {
     display: flex;
     align-items: center;
@@ -646,6 +663,9 @@
     transition: opacity .2s ease;
   }
   form.quote-form .form-status.show { opacity: 1; }
+  form.quote-form .submit-row { flex-wrap: wrap; }
+  form.quote-form .form-status { flex: 1 1 260px; }
+  form.quote-form .form-status a { color: inherit; text-decoration: underline; }
 
   /* ---------- Footer ---------- */
   footer {
@@ -810,7 +830,6 @@
     <header class="top">
       <span class="logo-wrap" style="position:relative; display:inline-block;">
         <a href="#top" aria-label="Home"><img class="wordmark" src="ryders-logo.png" alt="Ryder's Denim Repairs" /></a>
-        <a href="/login" aria-label="Staff login" style="position:absolute; top:34%; right:6%; width:16%; height:42%; z-index:2;"></a>
       </span>
       <nav class="top-nav">
         <a href="#work">Work</a>
@@ -954,9 +973,6 @@
         </div>
 
         <form class="quote-form" id="quote-form" novalidate>
-          <div style="position:absolute;left:-9999px;" aria-hidden="true">
-            <label>Company<input type="text" id="qf-company" name="company" tabindex="-1" autocomplete="off" /></label>
-          </div>
           <div class="row-2">
             <div>
               <label for="qf-name">Your name</label>
@@ -988,14 +1004,13 @@
             <label for="qf-issue">What needs fixing?</label>
             <textarea id="qf-issue" name="issue" placeholder="Describe the issue. Knee blowout, hem, taper, custom request, etc." required></textarea>
           </div>
-          <div>
-            <label for="qf-photos">Photos (close-up + full garment)</label>
-            <label class="file" for="qf-photos">Click to attach photos · jpg, png, heic</label>
-            <input id="qf-photos" name="photos" type="file" multiple accept="image/*" hidden />
+          <div class="photo-note">
+            <span class="photo-note-label">Photos</span>
+            <p>Your email opens next. Attach a close-up of the issue and a shot of the whole garment before you send.</p>
           </div>
           <div class="submit-row">
             <button type="submit" class="btn solid">Send Quote Request</button>
-            <span class="form-status" id="form-status">Thanks, I'll be in touch.</span>
+            <span class="form-status" id="form-status" role="status" aria-live="polite"></span>
           </div>
         </form>
       </div>
@@ -1042,18 +1057,6 @@
         }
       });
     });
-
-    // File input feedback
-    const fileInput = document.getElementById('qf-photos');
-    const fileLabel = document.querySelector('.file');
-    if (fileInput && fileLabel) {
-      fileInput.addEventListener('change', () => {
-        const n = fileInput.files.length;
-        fileLabel.textContent = n
-          ? n + ' photo' + (n === 1 ? '' : 's') + ' attached · click to change'
-          : 'Click to attach photos · jpg, png, heic';
-      });
-    }
 
     // ----- Selvedge scrollbar -----
     const selvedge = document.querySelector('.selvedge');
@@ -1120,51 +1123,25 @@
       }
     });
 
-    // Real quote submission
+    // Quote form: opens the visitor's email app, filled in and addressed to the shop
     const form = document.getElementById('quote-form');
     const status = document.getElementById('form-status');
-    const val = (id) => document.getElementById(id).value;
-    function setStatus(msg, ok) {
-      status.textContent = msg;
-      status.style.color = ok ? '' : '#e08a8a';
-      status.classList.add('show');
-    }
+    const val = (id) => document.getElementById(id).value.trim();
     if (form) {
-      form.addEventListener('submit', async (e) => {
+      form.addEventListener('submit', (e) => {
         e.preventDefault();
         if (!form.checkValidity()) { form.reportValidity(); return; }
-        const btn = form.querySelector('button[type="submit"]');
-        btn.disabled = true;
-        setStatus('Sending...', true);
-        try {
-          const files = Array.from(fileInput?.files || []);
-          const meta = files.map((f) => ({ name: f.name, size: f.size, type: f.type }));
-          const payload = {
-            name: val('qf-name'), email: val('qf-email'), phone: val('qf-phone'),
-            garment: val('qf-garment'), issue: val('qf-issue'),
-            company: val('qf-company'), photos: meta,
-          };
-          const res = await fetch('/.netlify/functions/submit-quote', {
-            method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(payload),
-          });
-          const data = await res.json();
-          if (!res.ok || !data.ok) throw new Error(data.error || 'Something went wrong.');
-          if (Array.isArray(data.uploads)) {
-            for (let i = 0; i < data.uploads.length; i++) {
-              await fetch(data.uploads[i].signedUrl, {
-                method: 'PUT', headers: { 'content-type': files[i].type }, body: files[i],
-              });
-            }
-          }
-          form.reset();
-          if (fileLabel) fileLabel.textContent = 'Click to attach photos · jpg, png, heic';
-          setStatus("Thanks, I'll be in touch.", true);
-        } catch (err) {
-          setStatus((err.message || 'Could not send.') + ' Or email hello@rydersrepairs.com', false);
-        } finally {
-          btn.disabled = false;
-          setTimeout(() => status.classList.remove('show'), 6000);
-        }
+        const lines = ['Name: ' + val('qf-name'), 'Email: ' + val('qf-email')];
+        if (val('qf-phone')) lines.push('Phone: ' + val('qf-phone'));
+        lines.push('Garment: ' + val('qf-garment'), '', 'What needs fixing:', val('qf-issue'), '',
+          '(Attach photos: a close-up of the issue and the whole garment.)');
+        const subject = 'Quote request: ' + val('qf-garment') + ' (' + val('qf-name') + ')';
+        window.location.href = 'mailto:hello@rydersrepairs.com'
+          + '?subject=' + encodeURIComponent(subject)
+          + '&body=' + encodeURIComponent(lines.join('\r\n'));
+        status.innerHTML = 'Your email should open with this filled in. Attach your photos and hit send. '
+          + 'Nothing opened? Email <a href="mailto:hello@rydersrepairs.com">hello@rydersrepairs.com</a>.';
+        status.classList.add('show');
       });
     }
   </script>
