@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ryder's Denim Repairs · Denim Tailor &amp; Jeans Repair in Columbus, Ohio</title>
-<meta name="description" content="Ryder's Denim Repairs is a Clintonville denim shop in Columbus, Ohio for jeans hemming, tapering, blowout reweaves, patches, and custom denim work. Bring your jeans in or send a photo for a fast quote." />
-<meta name="keywords" content="denim repair Columbus, jeans repair Columbus, denim tailor Columbus, jeans tailoring Columbus Ohio, jeans hemming Columbus, jeans tapering, blowout repair, visible mending, sashiko, Clintonville tailor" />
-<meta name="author" content="Ryder's Denim Repairs" />
+<title>Jean Repair &amp; Tailoring in Columbus, OH | Ryder's Repairs</title>
+<meta name="description" content="Jean repair and denim tailoring at 2930 N High St in Clintonville, Columbus. Hemming, tapering, blowout reweaves, and patches. Send a photo for a quote." />
+<meta name="keywords" content="jean repair Columbus, jeans repair Columbus, denim repair Columbus, jean tailor Columbus, jeans hemming Columbus, jeans tapering Columbus, crotch blowout repair, knee blowout repair, visible mending, sashiko, Clintonville tailor" />
+<meta name="author" content="Ryder's Repairs" />
 <meta name="robots" content="index, follow" />
 <link rel="canonical" href="https://rydersrepairs.com/" />
 <meta name="theme-color" content="#060912" />
@@ -24,21 +24,22 @@
 <!-- Geo (Columbus, OH) -->
 <meta name="geo.region" content="US-OH" />
 <meta name="geo.placename" content="Columbus, Ohio" />
-<meta name="geo.position" content="40.0223;-83.0119" />
-<meta name="ICBM" content="40.0223, -83.0119" />
+<meta name="geo.position" content="40.02194;-83.01306" />
+<meta name="ICBM" content="40.02194, -83.01306" />
 
 <!-- Open Graph / social share -->
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="Ryder's Denim Repairs" />
-<meta property="og:title" content="Ryder's Denim Repairs · Denim Tailor &amp; Jeans Repair in Columbus" />
-<meta property="og:description" content="Clintonville denim shop in Columbus, Ohio. Hems, tapers, blowout reweaves, patches, and custom denim work. Send a photo for a quote." />
+<meta property="og:locale" content="en_US" />
+<meta property="og:site_name" content="Ryder's Repairs" />
+<meta property="og:title" content="Jean Repair &amp; Tailoring in Columbus, OH | Ryder's Repairs" />
+<meta property="og:description" content="Denim repair shop on N High St in Clintonville. Hems, tapers, blowout reweaves, patches, and custom work. Send a photo for a quote." />
 <meta property="og:url" content="https://rydersrepairs.com/" />
 <meta property="og:image" content="https://rydersrepairs.com/og-image.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Ryder's Denim Repairs · Columbus, Ohio" />
-<meta name="twitter:description" content="Denim repair &amp; tailoring in Clintonville. Hems, tapers, blowout reweaves, patches, custom work. Send a photo for a quote." />
+<meta name="twitter:title" content="Jean Repair &amp; Tailoring in Columbus, OH | Ryder's Repairs" />
+<meta name="twitter:description" content="Denim repair shop on N High St in Clintonville. Hems, tapers, blowout reweaves, patches, and custom work. Send a photo for a quote." />
 <meta name="twitter:image" content="https://rydersrepairs.com/og-image.jpg" />
 
 <!-- Favicon -->
@@ -352,6 +353,18 @@
     text-shadow: 0 2px 24px rgba(0,0,0,0.4);
   }
   .hero h1 .red { color: var(--selvedge-red); }
+  .hero h1 .kicker {
+    display: block;
+    margin-bottom: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.6;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ecru);
+    text-shadow: none;
+  }
   .hero .right { padding-bottom: 16px; }
   .hero .lede {
     font-family: 'Spectral', serif;
@@ -804,8 +817,35 @@
     color: var(--ecru);
   }
   .reviews-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .review-quotes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 48px;
+    margin-top: 72px;
+    padding-top: 48px;
+    border-top: 1px solid var(--rule);
+  }
+  .review-quotes blockquote { margin: 0; }
+  .review-quotes p {
+    margin: 0 0 16px;
+    font-family: 'Spectral', serif;
+    font-style: italic;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--bone);
+  }
+  .review-quotes cite {
+    font-style: normal;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ecru-soft);
+  }
   @media (max-width: 900px) {
     .reviews { grid-template-columns: 1fr; gap: 32px; }
+    .review-quotes { grid-template-columns: minmax(0, 1fr); gap: 32px; margin-top: 48px; padding-top: 32px; }
   }
 
   /* ---------- Instagram card (feed preview) ---------- */
@@ -863,33 +903,70 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": ["TailorShop", "ClothingStore"],
-  "name": "Ryder's Denim Repairs",
-  "description": "Denim repair and tailoring in Columbus, Ohio. Jeans hemming, tapering, blowout reweaves, patches, and custom denim work.",
-  "image": "https://rydersrepairs.com/og-image.jpg",
-  "logo": "https://rydersrepairs.com/ryders-logo.png",
-  "url": "https://rydersrepairs.com/",
-  "email": "rydersdenimrepairs@gmail.com",
-  "foundingDate": "2023",
-  "priceRange": "$$",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "2930 N High St",
-    "addressLocality": "Columbus",
-    "addressRegion": "OH",
-    "postalCode": "43202",
-    "addressCountry": "US"
-  },
-  "geo": { "@type": "GeoCoordinates", "latitude": 40.0223, "longitude": -83.0119 },
-  "areaServed": { "@type": "City", "name": "Columbus" },
-  "openingHoursSpecification": [{
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
-    "opens": "13:00",
-    "closes": "19:00"
-  }],
-  "sameAs": ["https://instagram.com/rydersrepairs"],
-  "knowsAbout": ["denim repair", "jeans tailoring", "hemming", "tapering", "blowout reweave", "visible mending", "sashiko"]
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://rydersrepairs.com/#website",
+      "name": "Ryder's Repairs",
+      "alternateName": "Ryder's Denim Repairs",
+      "url": "https://rydersrepairs.com/",
+      "publisher": { "@id": "https://rydersrepairs.com/#business" }
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://rydersrepairs.com/#business",
+      "name": "Ryder's Repairs",
+      "alternateName": "Ryder's Denim Repairs",
+      "description": "Jean repair and denim tailoring shop in Clintonville, Columbus, Ohio. Hemming, tapering, knee and crotch blowout repair, patches, sashiko, and visible mending.",
+      "image": [
+        "https://rydersrepairs.com/og-image.jpg",
+        "https://rydersrepairs.com/work-blowout-reweave.jpg",
+        "https://rydersrepairs.com/work-pocket-reinforcement.jpg",
+        "https://rydersrepairs.com/work-visible-mending.jpg"
+      ],
+      "logo": "https://rydersrepairs.com/ryders-logo.png",
+      "url": "https://rydersrepairs.com/",
+      "email": "rydersdenimrepairs@gmail.com",
+      "foundingDate": "2024",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "2930 N High St",
+        "addressLocality": "Columbus",
+        "addressRegion": "OH",
+        "postalCode": "43202",
+        "addressCountry": "US"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": 40.02194, "longitude": -83.01306 },
+      "hasMap": "https://www.google.com/maps?cid=4777853245761517235",
+      "areaServed": [
+        { "@type": "City", "name": "Columbus", "sameAs": "https://en.wikipedia.org/wiki/Columbus,_Ohio" },
+        { "@type": "Place", "name": "Clintonville, Columbus, Ohio" }
+      ],
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "13:00",
+        "closes": "19:00"
+      }],
+      "sameAs": [
+        "https://instagram.com/rydersrepairs",
+        "https://www.google.com/maps?cid=4777853245761517235"
+      ],
+      "knowsAbout": ["jean repair", "denim repair", "jeans tailoring", "hemming", "original hem", "tapering", "blowout reweave", "crotch repair", "visible mending", "sashiko"],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Jean repair and denim tailoring",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Jeans hemming", "description": "Hemming that keeps the original hem, plus length adjustments." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Jeans tapering", "description": "Tapers from the knee or thigh." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Blowout repair", "description": "Knee and crotch blowout reweaves and crotch reinforcement." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Hardware and small repairs", "description": "Belt loops, fly swaps, buttons, and rivets." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Patches and visible mending", "description": "Patches, sashiko, visible mending, and one-off requests." } }
+        ]
+      }
+    }
+  ]
 }
 </script>
 </head>
@@ -919,9 +996,9 @@
     <div class="meta">2930 N. High St · Columbus, Ohio · Tue–Fri · 1–7pm</div>
 
     <section class="hero" id="top">
-      <h1>Denim,<br/>repaired.</h1>
+      <h1><span class="kicker">Jean repair &amp; tailoring · Columbus, Ohio</span>Denim,<br/>repaired.</h1>
       <div class="right">
-        <p class="lede">A denim repair &amp; tailoring shop in Clintonville, Columbus. Hems, tapers, blowout reweaves, patches, and custom work. Bring your jeans in or send a photo for a quote.</p>
+        <p class="lede">Jean repair and denim tailoring on North High Street in Clintonville. Hems, tapers, blowout reweaves, patches, and custom work. Bring your jeans in or send a photo for a quote.</p>
         <div class="ctas">
           <a class="btn solid" href="#contact">Request a Quote</a>
           <a class="phone-link" href="https://instagram.com/rydersrepairs" target="_blank" rel="noopener">See work on Instagram</a>
@@ -933,7 +1010,7 @@
       <div class="section-head">
         <div class="section-num">01 · Recent Work</div>
         <h2>A few of the last jobs out the door.</h2>
-        <div class="section-aside">More on Instagram. Curated highlights below.</div>
+        <div class="section-aside">More on Instagram.</div>
       </div>
       <div class="work-grid">
         <figure class="ba">
@@ -963,30 +1040,30 @@
           <div class="num">01</div>
           <div>
             <h3>Hems &amp; Tapers</h3>
-            <p>Original-hem preservation, clean tapers from the knee or thigh, length adjustments. Matched thread weight and color so the work looks like it left the factory.</p>
+            <p>Hemming that keeps the original hem, tapers from the knee or thigh, and length adjustments. Thread weight and color get matched so it looks like it left the factory that way.</p>
           </div>
           <div class="keywords">Hem · Taper<br/>Length · Thread match</div>
         </div>
         <div class="entry">
           <div class="num">02</div>
           <div>
-            <h3>Repairs</h3>
-            <p>Knee blowouts, crotch reinforcement, pocket bag replacement, belt loops, fly swaps, button and rivet work. Built to last another decade.</p>
+            <h3>Jean Repair</h3>
+            <p>Knee and crotch blowouts, crotch reinforcement, belt loops, fly swaps, button and rivet work.</p>
           </div>
-          <div class="keywords">Blowouts · Crotch<br/>Pockets · Hardware</div>
+          <div class="keywords">Blowouts · Crotch<br/>Belt loops · Hardware</div>
         </div>
         <div class="entry">
           <div class="num">03</div>
           <div>
             <h3>Custom Work</h3>
-            <p>Embroidery, patches, sashiko reinforcement, one-off requests. If you can describe it, we can talk through it.</p>
+            <p>Patches, sashiko, visible mending, and one-off requests. Send a photo of what you have in mind.</p>
           </div>
-          <div class="keywords">Embroidery · Patches<br/>Sashiko · One-off</div>
+          <div class="keywords">Patches · Sashiko<br/>Mending · One-off</div>
         </div>
       </div>
 
       <div class="quote-row">
-        <p>Every job's different. Priced by the piece, never by the hour.</p>
+        <p>Priced by the piece, not by the hour.</p>
         <a class="btn" href="#contact">Start a Quote</a>
       </div>
     </section>
@@ -999,7 +1076,7 @@
       </div>
       <div class="ig-block">
         <div class="copy">
-          <p>Day-to-day work goes up here first. Repairs in progress, finished jobs, the occasional sewing-machine close-up. Follow along, or come by the shop.</p>
+          <p>New work goes up on Instagram first, mid-repair and finished.</p>
           <div style="margin-top:32px"><a class="btn" href="https://instagram.com/rydersrepairs" target="_blank" rel="noopener">Open on Instagram</a></div>
         </div>
         <div class="ig-card">
@@ -1022,11 +1099,11 @@
       <div class="section-head">
         <div class="section-num">04 · About</div>
         <h2>About Ryder.</h2>
-        <div class="section-aside">Clintonville, since 2023.</div>
+        <div class="section-aside">Clintonville, since 2024.</div>
       </div>
       <div style="max-width: 70ch;">
         <p style="font-family:'Spectral',serif; font-size:18px; line-height:1.7; color:var(--ecru); font-weight:300;">
-          Ryder works out of a small denim shop on N. High Street in Clintonville, Columbus, repairing and tailoring jeans for people who'd rather fix what they already love than buy something new. Stop in during shop hours or send a photo for a quote.
+          Ryder runs a small denim repair shop at 2930 N. High Street in Clintonville, Columbus, and fixes and tailors jeans, jackets, and other denim. Stop in during shop hours or send a photo for a quote.
         </p>
       </div>
     </section>
@@ -1046,6 +1123,20 @@
           <a class="btn" href="https://www.google.com/maps?cid=4777853245761517235" target="_blank" rel="noopener">Read the reviews</a>
           <a class="btn solid" href="https://www.google.com/search?q=Ryder%27s+Repairs+Columbus+OH#lrd=0x88388d1f53297d15:0x424e58367e8ff6b3,3,,,," target="_blank" rel="noopener">Leave a review</a>
         </div>
+      </div>
+      <div class="review-quotes">
+        <blockquote>
+          <p>"If you want to save your favorite jeans this is the place to go!!!"</p>
+          <cite>Google review</cite>
+        </blockquote>
+        <blockquote>
+          <p>"Ryder is fantastic. He's knowledgeable, creative, quick and affordable."</p>
+          <cite>Google review</cite>
+        </blockquote>
+        <blockquote>
+          <p>"Fantastic service &amp; quality repairs w/ a quick turn around."</p>
+          <cite>Google review</cite>
+        </blockquote>
       </div>
     </section>
 
@@ -1135,7 +1226,7 @@
 
     <div class="colophon">
       <span>© Ryder's Repairs · Made in Columbus</span>
-      <span>Est. 2023</span>
+      <span>Est. 2024</span>
     </div>
 
   </div>
